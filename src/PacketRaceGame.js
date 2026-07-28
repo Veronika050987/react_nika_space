@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import monster from './img/monster.png';
 import monster2 from './img/monster2.png';
+import ship from './img/ship.png';
 
 export default function PacketRacegame()
 {
@@ -162,7 +163,8 @@ setGameActive(true);
                 </div>
             ) : timeLeft === 0 ? (
                 <div style={{ color: '#ﬀ4a4a', textAlign: 'center' }}>
-                    🚨 CONNECTION TIMEOUT!<br />The packets took too long to arrive.
+                    <img src={ship} width={50} height={70} alt="Ship"/>
+                    CONNECTION TIMEOUT!<br />The packets took too long to arrive.
                 </div>
             ) : (
                 <div style={{ color: '#777', textAlign: 'center' }}>
