@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import monster from './img/monster.png';
+import monster2 from './img/monster2.png';
 
 export default function PacketRacegame()
 {
@@ -93,7 +95,11 @@ setGameActive(true);
   return ( 
     <div style={{ padding: '20px', fontFamily: 'sans-serif', backgroundColor: '#E0FFFF', color: '#ﬀf', 
         borderRadius: '12px', maxWidth: '500px', margin: '0 auto'}}>
-            <h2 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>🌐 Digital packet race</h2>
+            <h2 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <img src={monster} width={90} height={120} alt="Alien"/> 
+                Digital packet race
+                <img src={monster2} width={90} height={90} alt="Alien2"/> 
+            </h2>
             <p>Hurry up! Route packets #0, #1 and #2 in order before the connection drops!!!</p>
 
             {/*Timer display panel*/}
