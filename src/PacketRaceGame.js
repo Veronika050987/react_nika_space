@@ -79,20 +79,21 @@ if (!gameActive || timeLeft === 0) return; // Freeze inputs if game is over
  
   const resetGame = () => { 
     setIncomingPackets([ 
-        { id: 2, code:"⭐🌌⭐", label: "Packet #2"},
-        { id: 0, code:"🚀 SPACE NEWS", label: "Packet #0" },
-        { id: 1, code: "Aliens love pizza!🍕", label: "Packet #1" } 
+        { id: 2, code:"Aliens love pizza! ", label: "Packet #2"},
+        { id: 0, code:"🚀 SPACE NEWS: ", label: "Packet #0" },
+        { id: 1, code: "👽", label: "Packet #1" },
+        { id: 3, code: "🍕", label: "Packet #3" } 
     ]); 
     setRouterBuffer([]); 
     
-setTimeLeft(15);
+setTimeLeft(30);
 setGameActive(true);
  }; 
  
   return ( 
-    <div style={{ padding: '20px', fontFamily: 'sans-serif', backgroundColor: '#F0FFFF', color: '#ﬀf', 
+    <div style={{ padding: '20px', fontFamily: 'sans-serif', backgroundColor: '#E0FFFF', color: '#ﬀf', 
         borderRadius: '12px', maxWidth: '500px', margin: '0 auto'}}>
-            <h2>🌐 Digital packet race</h2>
+            <h2 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>🌐 Digital packet race</h2>
             <p>Hurry up! Route packets #0, #1 and #2 in order before the connection drops!!!</p>
 
             {/*Timer display panel*/}
@@ -110,7 +111,7 @@ setGameActive(true);
             </div>
 
             {/* Incoming packets queue */}
-            <h3>📦 Server output buffer</h3>
+            <h3 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>📦 Server output buffer</h3>
             <div style={{ display: 'flex', gap: '10px', marginBottom: '20px', minHeight: '50px' }}>
                 {incomingPackets.map(packet => (
                     <button
@@ -133,7 +134,7 @@ setGameActive(true);
             </div>
 
             {/* Router stream */}
-            <h3>🛠️ Your router assembly line</h3>
+            <h3 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>🛠️ Your router assembly line</h3>
             <div style={{display: 'ﬂex', gap: '10px', minHeight: '50px', backgroundColor: '#ADD8E6', padding: '10px', borderRadius: '8px', marginBottom: '20px' }}>
                 { routerBuffer.map((packet, index) => (
                 <div key={index} style={{ padding: '10px', backgroundColor: '#87CEEB', borderRadius: '5px', fontWeight: 'bold' }}>
@@ -143,7 +144,7 @@ setGameActive(true);
             </div>
 
             { /* Live browser window */}
-            <h3>🖥️ User's web browser</h3>
+            <h3 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>🖥️ User's web browser</h3>
 
             <div style={{ padding: '20px', border: '3px solid #4ecca3', borderRadius: '8px', backgroundColor: '#ﬀf', 
             color: '#333', minHeight: '80px', display: 'ﬂex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold' }}>
