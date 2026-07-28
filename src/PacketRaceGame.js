@@ -96,12 +96,14 @@ setGameActive(true);
   return ( 
     <div style={{ padding: '20px', fontFamily: 'sans-serif', backgroundColor: '#E0FFFF', color: '#ﬀf', 
         borderRadius: '12px', maxWidth: '500px', margin: '0 auto'}}>
-            <h2 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <img src={monster} width={90} height={120} alt="Alien"/> 
+            <h2 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#4682B4' }}>
+                <img src={monster} width={78} height={107} alt="Alien"/> 
                 Digital packet race
-                <img src={monster2} width={90} height={90} alt="Alien2"/> 
+                <img src={monster2} width={88} height={88} alt="Alien2"/> 
             </h2>
-            <p>Hurry up! Route packets #0, #1 and #2 in order before the connection drops!!!</p>
+            <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                Hurry up! Route packets in order before the connection drops!!!
+            </p>
 
             {/*Timer display panel*/}
             <div style={{
@@ -127,7 +129,7 @@ setGameActive(true);
                     onClick={() => selectPacket(packet)}
                     style={{
                         padding: '15px',
-                        backgroundColor: gameActive ? '#e94560' : '#8B0000',
+                        backgroundColor: gameActive ? '#FFA07A' : '#8B0000',
                         color: '#ﬀf',  
                         border: 'none',  
                         borderRadius: '8px',  
@@ -135,13 +137,13 @@ setGameActive(true);
                         fontWeight: 'bold'  
                     }}
                     >
-                        📬 {packet.label}
+                        ✉️ {packet.label}
                     </button>
                 ))}
             </div>
 
             {/* Router stream */}
-            <h3 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>🛠️ Your router assembly line</h3>
+            <h3 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>⚙️ Your router assembly line</h3>
             <div style={{display: 'ﬂex', gap: '10px', minHeight: '50px', backgroundColor: '#ADD8E6', padding: '10px', borderRadius: '8px', marginBottom: '20px' }}>
                 { routerBuffer.map((packet, index) => (
                 <div key={index} style={{ padding: '10px', backgroundColor: '#87CEEB', borderRadius: '5px', fontWeight: 'bold' }}>
@@ -163,8 +165,9 @@ setGameActive(true);
                 </div>
             ) : timeLeft === 0 ? (
                 <div style={{ color: '#ﬀ4a4a', textAlign: 'center' }}>
-                    <img src={ship} width={50} height={70} alt="Ship"/>
+                    <img src={ship} width={40} height={60} alt="Ship"/>
                     CONNECTION TIMEOUT!<br />The packets took too long to arrive.
+                    <img src={ship} width={40} height={60} alt="Ship"/>
                 </div>
             ) : (
                 <div style={{ color: '#777', textAlign: 'center' }}>
