@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import monster from './img/monster.png';
 import monster2 from './img/monster2.png';
 import ship from './img/ship.png';
+import shevron from './img/shevron.png';
+import reboot from './img/reboot.png';
+import box from './img/box.png';
+import envelope from './img/envelope.png';
 
 export default function PacketRacegame()
 {
@@ -120,7 +124,10 @@ setGameActive(true);
             </div>
 
             {/* Incoming packets queue */}
-            <h3 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>📦 Server output buffer</h3>
+            <h3 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <img src={box} width={45} height={45} alt="Box"/>
+                Server output buffer
+                </h3>
             <div style={{ display: 'flex', gap: '10px', marginBottom: '20px', minHeight: '50px' }}>
                 {incomingPackets.map(packet => (
                     <button
@@ -137,13 +144,16 @@ setGameActive(true);
                         fontWeight: 'bold'  
                     }}
                     >
-                        ✉️ {packet.label}
+                        <img src={envelope} width={28} height={18} alt="Box"/> {packet.label}
                     </button>
                 ))}
             </div>
 
             {/* Router stream */}
-            <h3 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>⚙️ Your router assembly line</h3>
+            <h3 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <img src={shevron} width={32} height={32} alt="Sevron"/> 
+                Your router assembly line
+                </h3>
             <div style={{display: 'ﬂex', gap: '10px', minHeight: '50px', backgroundColor: '#ADD8E6', padding: '10px', borderRadius: '8px', marginBottom: '20px' }}>
                 { routerBuffer.map((packet, index) => (
                 <div key={index} style={{ padding: '10px', backgroundColor: '#87CEEB', borderRadius: '5px', fontWeight: 'bold' }}>
@@ -178,8 +188,9 @@ setGameActive(true);
 
             <button onClick={resetGame} style={{ marginTop: '25px', width: '100%', padding: '12px', 
             fontSize: '16px', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', border: 'none', backgroundColor: '#B0E0E6', 
-            color: '#1a1a2e' }}>
-                🔄 Reboot router
+            color: '#1a1a2e'}}>
+                <img src={reboot} width={20} height={22} alt="Reboot"/>
+                Reboot router
             </button>
     </div>
   );
