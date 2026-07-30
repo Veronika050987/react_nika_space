@@ -6,6 +6,9 @@ import shevron from './img/shevron.png';
 import reboot from './img/reboot.png';
 import box from './img/box.png';
 import envelope from './img/envelope.png';
+import alarm from './img/alarm.png';
+import sand from './img/sand.png';
+import arrow2 from './img/arrow2.png';
 
 export default function PacketRacegame()
 {
@@ -120,7 +123,8 @@ setGameActive(true);
                 backgroundColor: timeLeft <= 5 ? '#ﬀ4a4a' : '#4ecca3', // Turns red when dangerous 
                 color: '#ﬀf'
             }}>
-                ⏱️ Time remaining: {timeLeft}s
+                <img src={alarm} width={22} height={28} alt="Alarm"/> 
+                Time remaining: {timeLeft}s
             </div>
 
             {/* Incoming packets queue */}
@@ -136,7 +140,7 @@ setGameActive(true);
                     onClick={() => selectPacket(packet)}
                     style={{
                         padding: '15px',
-                        backgroundColor: gameActive ? '#FFA07A' : '#8B0000',
+                        backgroundColor: gameActive ? '#FFD700' : '#8B0000',
                         color: '#ﬀf',  
                         border: 'none',  
                         borderRadius: '8px',  
@@ -181,7 +185,8 @@ setGameActive(true);
                 </div>
             ) : (
                 <div style={{ color: '#777', textAlign: 'center' }}>
-                    ⌛ Waiting for clean data stream... (Error 404) 
+                    <img src={sand} width={30} height={45} alt="Sand"/> 
+                    Waiting for clean data stream... (Error 404) 
                 </div>
             )}
             </div>
@@ -189,7 +194,7 @@ setGameActive(true);
             <button onClick={resetGame} style={{ marginTop: '25px', width: '100%', padding: '12px', 
             fontSize: '16px', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', border: 'none', backgroundColor: '#B0E0E6', 
             color: '#1a1a2e'}}>
-                <img src={reboot} width={20} height={22} alt="Reboot"/>
+                <img src={arrow2} width={23} height={25} alt="Arrow2"/>
                 Reboot router
             </button>
     </div>
