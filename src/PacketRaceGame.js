@@ -3,12 +3,12 @@ import monster from './img/monster.png';
 import monster2 from './img/monster2.png';
 import ship from './img/ship.png';
 import shevron from './img/shevron.png';
-import reboot from './img/reboot.png';
 import box from './img/box.png';
 import envelope from './img/envelope.png';
 import alarm from './img/alarm.png';
 import sand from './img/sand.png';
 import arrow2 from './img/arrow2.png';
+import './PacketRaceGame.css';
 
 export default function PacketRacegame()
 {
@@ -101,14 +101,13 @@ setGameActive(true);
  }; 
  
   return ( 
-    <div style={{ padding: '20px', fontFamily: 'sans-serif', backgroundColor: '#E0FFFF', color: '#ﬀf', 
-        borderRadius: '12px', maxWidth: '500px', margin: '0 auto'}}>
-            <h2 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#4682B4' }}>
-                <img src={monster} width={78} height={107} alt="Alien"/> 
+    <div className='form'>
+            <h2 className='aliens'>
+                <img src={monster} width={56} height={81} alt="Alien"/> 
                 Digital packet race
-                <img src={monster2} width={88} height={88} alt="Alien2"/> 
+                <img src={monster2} width={66} height={66} alt="Alien2"/> 
             </h2>
-            <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <p className='hurry'>
                 Hurry up! Route packets in order before the connection drops!!!
             </p>
 
@@ -121,31 +120,31 @@ setGameActive(true);
                 textAlign: 'center', 
                 marginBottom: '20px',
                 backgroundColor: timeLeft <= 5 ? '#ﬀ4a4a' : '#4ecca3', // Turns red when dangerous 
-                color: '#ﬀf'
+                color: '#191970'
             }}>
-                <img src={alarm} width={22} height={28} alt="Alarm"/> 
+                <img src={alarm} width={21} height={29} alt="Alarm"/> 
                 Time remaining: {timeLeft}s
             </div>
 
             {/* Incoming packets queue */}
-            <h3 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <h3 className='server'>
                 <img src={box} width={45} height={45} alt="Box"/>
                 Server output buffer
-                </h3>
-            <div style={{ display: 'flex', gap: '10px', marginBottom: '20px', minHeight: '50px' }}>
+            </h3>
+            <div className='packets'>
                 {incomingPackets.map(packet => (
                     <button
                     key={packet.id}
                     disabled={!gameActive}
                     onClick={() => selectPacket(packet)}
+                    className='packets-key'
                     style={{
                         padding: '15px',
                         backgroundColor: gameActive ? '#FFD700' : '#8B0000',
-                        color: '#ﬀf',  
+                        color: '#800000',  
                         border: 'none',  
                         borderRadius: '8px',  
                         cursor: gameActive ? 'pointer' : 'not-allowed',  
-                        fontWeight: 'bold'  
                     }}
                     >
                         <img src={envelope} width={28} height={18} alt="Box"/> {packet.label}
@@ -154,46 +153,45 @@ setGameActive(true);
             </div>
 
             {/* Router stream */}
-            <h3 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <img src={shevron} width={32} height={32} alt="Sevron"/> 
+            <h3 className='router'>
+                <img src={shevron} width={32} height={32} alt="Shevron"/> 
                 Your router assembly line
-                </h3>
-            <div style={{display: 'ﬂex', gap: '10px', minHeight: '50px', backgroundColor: '#ADD8E6', padding: '10px', borderRadius: '8px', marginBottom: '20px' }}>
+            </h3>
+            <div className='router-buffer'>
                 { routerBuffer.map((packet, index) => (
-                <div key={index} style={{ padding: '10px', backgroundColor: '#87CEEB', borderRadius: '5px', fontWeight: 'bold' }}>
+                <div key={index} className='buffer'>
                     { packet.label }
                 </div>
                 ))}
             </div>
 
             { /* Live browser window */}
-            <h3 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>🖥️ User's web browser</h3>
+            <h3 className='browser'>
+                🖥️ User's web browser
+            </h3>
 
-            <div style={{ padding: '20px', border: '3px solid #4ecca3', borderRadius: '8px', backgroundColor: '#ﬀf', 
-            color: '#333', minHeight: '80px', display: 'ﬂex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold' }}>
+            <div className='browser-buffer'>
             
             { isWebpageLoaded ? (
-                <div style={{ color: '#2b2b2b', fontSize: '20px', textAlign: 'center' }}>
-                    🏆 Success! Webpage loaded!!! <br/>
-                    <span style={{ color: '#0f3460' }}>{routerBuffer.map(p => p.code).join(" ")}</span>                    
+                <div className='success'>
+                    🏆 SUCCESS! Webpage loaded!!! <br/>
+                    <span style={{ color: '#228B22' }}>{routerBuffer.map(p => p.code).join(" ")}</span>                    
                 </div>
             ) : timeLeft === 0 ? (
-                <div style={{ color: '#ﬀ4a4a', textAlign: 'center' }}>
-                    <img src={ship} width={40} height={60} alt="Ship"/>
+                <div className='no-time'>
+                    <img src={ship} width={36} height={56} alt="Ship"/>
                     CONNECTION TIMEOUT!<br />The packets took too long to arrive.
-                    <img src={ship} width={40} height={60} alt="Ship"/>
+                    <img src={ship} width={36} height={56} alt="Ship"/>
                 </div>
             ) : (
-                <div style={{ color: '#777', textAlign: 'center' }}>
-                    <img src={sand} width={30} height={45} alt="Sand"/> 
-                    Waiting for clean data stream... (Error 404) 
+                <div className='load'>
+                    <img src={sand} width={30} height={34} alt="Sand"/> 
+                    The page doesn't exist or not found... (Error 404) 
                 </div>
             )}
             </div>
 
-            <button onClick={resetGame} style={{ marginTop: '25px', width: '100%', padding: '12px', 
-            fontSize: '16px', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', border: 'none', backgroundColor: '#B0E0E6', 
-            color: '#1a1a2e'}}>
+            <button onClick={resetGame} className='reset'>
                 <img src={arrow2} width={23} height={25} alt="Arrow2"/>
                 Reboot router
             </button>

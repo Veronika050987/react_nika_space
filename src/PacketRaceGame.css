@@ -1,0 +1,121 @@
+.form
+{
+    padding: 15px; 
+    font-family: sans-serif; 
+    background-color: #E0FFFF; 
+    color: #191970; 
+    border-radius: 12px; 
+    max-width: 500px; 
+    margin: 0 auto
+}
+
+.aliens
+{
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    color: #4682B4
+}
+
+.hurry
+{
+    color: #FF0000;
+    display: flex; 
+    align-items: center; 
+    justify-content: center
+}
+
+.server
+{
+    display: flex; 
+    align-items: center; 
+    justify-content: center
+}
+
+.packets
+{
+    display: flex; 
+    gap: 10px; 
+    margin-bottom: 20px; 
+    min-height: 50px
+}
+
+.router
+{
+    display: flex; 
+    align-items: center; 
+    justify-content: center
+}
+
+.router-buffer
+{
+    display: ﬂex; 
+    gap: 10px; 
+    min-height: 50px; 
+    background-color: #ADD8E6; 
+    padding: 10px; 
+    border-radius: 8px; 
+    margin-bottom: 20px
+}
+
+.buffer
+{
+    padding: 10px; 
+    background-color: #87CEEB; 
+    border-radius: 5px; 
+    font-weight: bold
+}
+
+.browser
+{
+    display: flex; 
+    align-items: center; 
+    justify-content: center
+}
+
+.browser-buffer
+{
+    padding: 20px; 
+    border: 3px solid #4ecca3; 
+    border-radius: 8px; 
+    background-color: #fff; 
+    color: #333; 
+    min-height: 80px; 
+    display: ﬂex; 
+    align-items: center; 
+    justify-content: center; 
+    font-weight: bold
+}
+
+.success
+{
+    color: #228B22; 
+    font-size: 20px; 
+    text-align: center
+}
+
+.no-time
+{
+    color: #ff4a4a; 
+    text-align: center
+}
+
+.load
+{
+    color: #777; 
+    text-align: center
+}
+
+.reset
+{
+    margin-top: 25px; 
+    width: 100%; 
+    padding: 12px; 
+    font-size: 16px; 
+    font-weight: bold; 
+    cursor: pointer; 
+    border-radius: 8px; 
+    border: none; 
+    background-color: #B0E0E6; 
+    color: #1a1a2e
+}
