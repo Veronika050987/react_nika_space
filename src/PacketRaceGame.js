@@ -7,7 +7,7 @@ import box from './img/box.png';
 import envelope from './img/envelope.png';
 import alarm from './img/alarm.png';
 import sand from './img/sand.png';
-import arrow2 from './img/arrow2.png';
+import str from './img/str.png';
 import './PacketRaceGame.css';
 
 export default function PacketRacegame()
@@ -125,6 +125,10 @@ if (!gameActive || timeLeft === 0) return; // Freeze inputs if game is over
 
             {/*Timer display panel*/}
             <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+
                 padding: '10px 20px',  
                 fontSize: '22px',  
                 fontWeight: 'bold',  
@@ -197,7 +201,7 @@ if (!gameActive || timeLeft === 0) return; // Freeze inputs if game is over
                 </div>
             ) : (
                 <div className='load'>
-                    <img src={sand} width={30} height={34} alt="Sand"/> 
+                    {/* <img src={sand} width={30} height={34} alt="Sand"/>  */}
                     { browserMessage ? (
                     <span style={{ color: '#FF4500', fontWeight: 'bold' }}>{browserMessage}</span>
                 ) : (
@@ -208,7 +212,7 @@ if (!gameActive || timeLeft === 0) return; // Freeze inputs if game is over
             </div>
 
             <button onClick={resetGame} className='reset'>
-                <img src={arrow2} width={23} height={25} alt="Arrow2"/>
+                <img src={str} width={30} height={40} alt="str"/>
                 Reboot router
             </button>
     </div>
