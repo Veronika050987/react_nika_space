@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/react_nika_space/static/css/main.7703cb3c.css",
-    "main.js": "/react_nika_space/static/js/main.bcfafebc.js",
+    "main.js": "/react_nika_space/static/js/main.ab91195e.js",
     "static/js/453.5108f609.chunk.js": "/react_nika_space/static/js/453.5108f609.chunk.js",
     "static/media/box.png": "/react_nika_space/static/media/box.1ba71b12160d827cfdb6.png",
     "static/media/arrow2.png": "/react_nika_space/static/media/arrow2.a9109934b5094503632a.png",
@@ -11,15 +11,16 @@
     "static/media/ship.png": "/react_nika_space/static/media/ship.0a4b163cf2c80e7d41f4.png",
     "static/media/monster2.png": "/react_nika_space/static/media/monster2.75ba069b753cd2814868.png",
     "static/media/sand.png": "/react_nika_space/static/media/sand.f4dff324ca90faa8ffd2.png",
+    "static/media/back2.jpg": "/react_nika_space/static/media/back2.fd483ab216176ba2b737.jpg",
     "static/media/shevron.png": "/react_nika_space/static/media/shevron.e531415ecf5ca052a367.png",
     "static/media/logo.svg": "/react_nika_space/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/react_nika_space/index.html",
     "main.7703cb3c.css.map": "/react_nika_space/static/css/main.7703cb3c.css.map",
-    "main.bcfafebc.js.map": "/react_nika_space/static/js/main.bcfafebc.js.map",
+    "main.ab91195e.js.map": "/react_nika_space/static/js/main.ab91195e.js.map",
     "453.5108f609.chunk.js.map": "/react_nika_space/static/js/453.5108f609.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7703cb3c.css",
-    "static/js/main.bcfafebc.js"
+    "static/js/main.ab91195e.js"
   ]
 }
