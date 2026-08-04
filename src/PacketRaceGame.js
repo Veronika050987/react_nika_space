@@ -131,8 +131,8 @@ if (!gameActive || timeLeft === 0) return; // Freeze inputs if game is over
                 borderRadius: '8px',  
                 textAlign: 'center', 
                 marginBottom: '20px',
-                backgroundColor: timeLeft <= 5 ? '#ﬀ4a4a' : '#4ecca3', // Turns red when dangerous 
-                color: '#191970'
+                backgroundColor: timeLeft <= 5 ? '#DC143C' : '#4ecca3', // Turns red when dangerous 
+                color: timeLeft <= 5 ? '#F0F8FF' : '#191970'
             }}>
                 <img src={alarm} width={21} height={29} alt="Alarm"/> 
                 Time remaining: {timeLeft}s
@@ -153,7 +153,7 @@ if (!gameActive || timeLeft === 0) return; // Freeze inputs if game is over
                     style={{
                         padding: '15px',
                         backgroundColor: gameActive ? '#FFD700' : '#8B0000',
-                        color: '#191970',  
+                        color: gameActive ? '#191970' : '#F0F8FF',  
                         border: 'none',  
                         borderRadius: '8px',  
                         cursor: gameActive ? 'pointer' : 'not-allowed',  
@@ -191,9 +191,9 @@ if (!gameActive || timeLeft === 0) return; // Freeze inputs if game is over
                 </div>
             ) : timeLeft === 0 ? (
                 <div className='no-time'>
-                    <img src={ship} width={36} height={56} alt="Ship"/>
-                    408 Request Time-out<br />The packets took too long to arrive.
-                    <img src={ship} width={36} height={56} alt="Ship"/>
+                    <img src={ship} width={31} height={42} alt="Ship"/>
+                    408 Request Time-out. The packets took too long to arrive.
+                    <img src={ship} width={31} height={42} alt="Ship"/>
                 </div>
             ) : (
                 <div className='load'>
