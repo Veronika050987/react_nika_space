@@ -68,7 +68,9 @@ return () => clearInterval(timerId);
     routerBuffer[1]?.id === 1 &&
     routerBuffer[2]?.id === 2 && 
     routerBuffer[3]?.id === 3; 
- 
+
+  const [browserMessage, setBrowserMessage] = useState("");
+
   // Stop timer immediately if they win
  
   if (isWebpageLoaded && gameActive) {
@@ -81,6 +83,14 @@ return () => clearInterval(timerId);
     
 if (!gameActive || timeLeft === 0) return; // Freeze inputs if game is over
  
+    const expectedId = routerBuffer.length; 
+
+    if (packet.id !== expectedId) {
+        setBrowserMessage("Error 400: Bad Request (Invalid packet order)");
+        return; // Прерываем выполнение, пакет не добавляется
+    }
+
+    setBrowserMessage("");
     setRouterBuffer([...routerBuffer, packet]); 
     setIncomingPackets(incomingPackets.filter(p => p.id !== packet.id)); 
   }; 
@@ -95,20 +105,22 @@ if (!gameActive || timeLeft === 0) return; // Freeze inputs if game is over
         { id: 3, code: "🍕", label: "Packet #3" } 
     ]); 
     setRouterBuffer([]); 
+
+    setBrowserMessage(""); 
     
-setTimeLeft(30);
-setGameActive(true);
+    setTimeLeft(30);
+    setGameActive(true);
  }; 
  
   return ( 
     <div className='form'>
             <h2 className='aliens'>
-                <img src={monster} width={56} height={81} alt="Alien"/> 
+                <img src={monster} width={56} height={78} alt="Alien"/> 
                 Digital packet race
                 <img src={monster2} width={66} height={66} alt="Alien2"/> 
             </h2>
             <p className='hurry'>
-                Hurry up! Route packets in order before the connection drops!!!
+                Hurry up! Route packets in order before the connection drops!
             </p>
 
             {/*Timer display panel*/}
@@ -141,7 +153,7 @@ setGameActive(true);
                     style={{
                         padding: '15px',
                         backgroundColor: gameActive ? '#FFD700' : '#8B0000',
-                        color: '#800000',  
+                        color: '#191970',  
                         border: 'none',  
                         borderRadius: '8px',  
                         cursor: gameActive ? 'pointer' : 'not-allowed',  
@@ -180,13 +192,17 @@ setGameActive(true);
             ) : timeLeft === 0 ? (
                 <div className='no-time'>
                     <img src={ship} width={36} height={56} alt="Ship"/>
-                    CONNECTION TIMEOUT!<br />The packets took too long to arrive.
+                    408 Request Time-out<br />The packets took too long to arrive.
                     <img src={ship} width={36} height={56} alt="Ship"/>
                 </div>
             ) : (
                 <div className='load'>
                     <img src={sand} width={30} height={34} alt="Sand"/> 
-                    The page doesn't exist or not found... (Error 404) 
+                    { browserMessage ? (
+                    <span style={{ color: '#FF4500', fontWeight: 'bold' }}>{browserMessage}</span>
+                ) : (
+                    "(Error 404) The page doesn't exist or not found..."
+                )}
                 </div>
             )}
             </div>
