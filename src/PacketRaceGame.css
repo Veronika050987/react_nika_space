@@ -5,7 +5,8 @@
     background-color: #E0FFFF; 
     color: #191970; 
     border-radius: 12px; 
-    max-width: 520px;
+    min-width: 530px;
+    width: 530px;
     box-sizing: border-box; 
     margin: 0 auto
 }
@@ -23,7 +24,8 @@
     color: #008080;
     display: flex; 
     align-items: center; 
-    justify-content: center
+    justify-content: center;
+    text-align: center;
 }
 
 .server
@@ -38,7 +40,10 @@
     display: flex; 
     gap: 10px; 
     margin-bottom: 20px; 
-    min-height: 43px
+    /* min-height: 60px; */
+    height: 60px;
+    align-items: center; 
+    justify-content: center
 }
 
 .router
@@ -50,13 +55,15 @@
 
 .router-buffer
 {
-    display: ﬂex; 
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr);
     gap: 10px; 
     min-height: 50px; 
     background-color: #ADD8E6; 
     padding: 10px; 
     border-radius: 8px; 
-    margin-bottom: 20px
+    margin-bottom: 20px;
+    font-size: 12px;
 }
 
 .buffer
@@ -116,7 +123,7 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-    margin-top: 25px; 
+    margin-top: 20px; 
     width: 100%; 
     padding: 12px; 
     font-size: 16px; 

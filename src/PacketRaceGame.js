@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import monster from './img/monster.png';
 import monster2 from './img/monster2.png';
-import ship from './img/ship.png';
 import shevron from './img/shevron.png';
 import box from './img/box.png';
 import envelope from './img/envelope.png';
@@ -184,7 +183,7 @@ if (!gameActive || timeLeft === 0) return; // Freeze inputs if game is over
                         cursor: gameActive ? 'pointer' : 'not-allowed',  
                     }}
                     >
-                        <img src={envelope} width={28} height={18} alt="Box"/> {t(packet.label)}
+                        <img src={envelope} width={25} height={15} alt="Box"/> {t(packet.label)}
                     </button>
                 ))}
             </div>
@@ -216,9 +215,9 @@ if (!gameActive || timeLeft === 0) return; // Freeze inputs if game is over
                 </div>
             ) : timeLeft === 0 ? (
                 <div className='no-time'>
-                    <img src={ship} width={31} height={42} alt="Ship"/>
-                    {t("408 Request Time-out. The packets took too long to arrive.")}
-                    <img src={ship} width={31} height={42} alt="Ship"/>
+                    {/* <img src={ship} width={31} height={42} alt="Ship"/> */}
+                    {t("408 Request Time-out. The packets took long to arrive.")}
+                    {/* <img src={ship} width={31} height={42} alt="Ship"/> */}
                 </div>
             ) : (
                 <div className='load'>
