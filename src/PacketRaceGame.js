@@ -25,7 +25,8 @@ const translations = {
     "408 Request Time-out. The packets took too long to arrive.": "408 Истекло время ожидания запроса пакетов",
     "Error 400: Bad Request (Invalid packet order)": "Ошибка 400: неверный запрос (Нарушен порядок пакетов)",
     "(Error 404) The page doesn't exist or not found...": "(Ошибка 404) Страница не существует или не найдена...",
-    "Reboot router": "Перезагрузить роутер" 
+    "Reboot router": "Перезагрузить роутер",
+    "SUCCESS! Webpage loaded!": "УСПЕХ! Веб страница загружена!" 
 };
 
 export default function PacketRaceGame()
@@ -196,7 +197,7 @@ if (!gameActive || timeLeft === 0) return; // Freeze inputs if game is over
             <div className='router-buffer'>
                 { routerBuffer.map((packet, index) => (
                 <div key={index} className='buffer'>
-                    { packet.label }
+                    { t(packet.label) }
                 </div>
                 ))}
             </div>
@@ -210,18 +211,15 @@ if (!gameActive || timeLeft === 0) return; // Freeze inputs if game is over
             
             { isWebpageLoaded ? (
                 <div className='success'>
-                    🏆 SUCCESS! Webpage loaded!!! <br/>
-                    <span style={{ color: '#228B22' }}>{routerBuffer.map(p => p.code).join(" ")}</span>                    
+                    🏆 {t("SUCCESS! Webpage loaded!")} <br/>
+                    <span style={{ color: '#228B22' }}>{routerBuffer.map(p => t(p.code)).join(" ")}</span>                    
                 </div>
             ) : timeLeft === 0 ? (
                 <div className='no-time'>
-                    {/* <img src={ship} width={31} height={42} alt="Ship"/> */}
                     {t("408 Request Time-out. The packets took long to arrive.")}
-                    {/* <img src={ship} width={31} height={42} alt="Ship"/> */}
                 </div>
             ) : (
                 <div className='load'>
-                    {/* <img src={sand} width={30} height={34} alt="Sand"/>  */}
                     { browserMessage ? (
                     <span style={{ color: '#FF4500', fontWeight: 'bold' }}>{t(browserMessage)}</span>
                 ) : (
