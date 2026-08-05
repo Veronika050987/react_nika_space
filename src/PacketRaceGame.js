@@ -9,8 +9,30 @@ import alarm from './img/alarm.png';
 import str from './img/str.png';
 import './PacketRaceGame.css';
 
-export default function PacketRacegame()
+const translations = {
+     "Aliens love pizza! ": "Инопланетяне любят пиццу! ",
+    "🚀 SPACE NEWS: ": "🚀 КОСМИЧЕСКИЕ НОВОСТИ: ",
+    "Packet #2": "Пакет №2",
+    "Packet #0": "Пакет №0",
+    "Packet #1": "Пакет №1",
+    "Packet #3": "Пакет №3",
+    "Digital packet race": "Гонка цифровых пакетов",
+    "Hurry up! Route packets in order before the connection drops!": "Поспеши! Расставь пакеты по порядку до прерывания соединения!",
+    "Time remaining": "Осталось времени",
+    "s": "с",
+    "Server output buffer": "Выходной буфер сервера",
+    "Your router assembly line": "Сборочная линия роутера",
+    "User's web browser": "Веб браузер пользователя",
+    "408 Request Time-out. The packets took too long to arrive.": "408 Истекло время ожидания запроса пакетов",
+    "Error 400: Bad Request (Invalid packet order)": "Ошибка 400: неверный запрос (Нарушен порядок пакетов)",
+    "(Error 404) The page doesn't exist or not found...": "(Ошибка 404) Страница не существует или не найдена...",
+    "Reboot router": "Перезагрузить роутер" 
+};
+
+export default function PacketRaceGame()
 {
+    const [isRussian, setIsRussian] = useState(false);
+
     //1. Packet data
     const [incomingPackets, setIncomingPackets] = useState([
         { id: 2, code:"Aliens love pizza! ", label: "Packet #2"},
@@ -18,28 +40,27 @@ export default function PacketRacegame()
         { id: 1, code: "👽", label: "Packet #1" },
         { id: 3, code: "🍕", label: "Packet #3" }
     ]);
-const [routerBuffer, setRouterBuffer] = useState([]); 
+
+    const t = (text) => (isRussian && translations[text] ? translations[text] : text);
+
+    const [routerBuffer, setRouterBuffer] = useState([]); 
 
 // 2. Timer State (Starts at 15 seconds) 
   const [timeLeft, setTimeLeft] = useState(30);
  
   const [gameActive, setGameActive] = useState(true);
  
- 
   // 3. The Countdown Timer Logic 
   useEffect(() => { 
     
 // Stop the timer if the game is over or won
- 
-    
+     
 if (!gameActive || timeLeft <= 0) return;
- 
  
     // Tick down every 1000ms (1 second) 
     
 const timerId = setInterval(() => {
- 
-      
+    
 setTimeLeft((prevTime) => {
  
         if (prevTime <= 1) { 
@@ -52,13 +73,11 @@ setGameActive(false); // End game when hittng 0
         }); 
     }, 1000); 
  
-    
 // Clean up the timer when the component changes
  
 return () => clearInterval(timerId);
  
   }, [timeLeft, gameActive]);
- 
  
   // Check if packets are correctly sequenced (0 -> 1 -> 2) 
   const isWebpageLoaded =  
@@ -85,7 +104,7 @@ if (!gameActive || timeLeft === 0) return; // Freeze inputs if game is over
     const expectedId = routerBuffer.length; 
 
     if (packet.id !== expectedId) {
-        setBrowserMessage("Error 400: Bad Request (Invalid packet order)");
+        setBrowserMessage(t("Error 400: Bad Request (Invalid packet order)"));
         return; // Прерываем выполнение, пакет не добавляется
     }
 
@@ -113,13 +132,17 @@ if (!gameActive || timeLeft === 0) return; // Freeze inputs if game is over
  
   return ( 
     <div className='form'>
+            <button onClick={() => setIsRussian(!isRussian)}>
+                {isRussian ? "English" : "Русский"}
+            </button>
+      
             <h2 className='aliens'>
                 <img src={monster} width={56} height={78} alt="Alien"/> 
-                Digital packet race
+                {t("Digital packet race")}
                 <img src={monster2} width={66} height={66} alt="Alien2"/> 
             </h2>
             <p className='hurry'>
-                Hurry up! Route packets in order before the connection drops!
+                {t("Hurry up! Route packets in order before the connection drops!")}
             </p>
 
             {/*Timer display panel*/}
@@ -127,7 +150,6 @@ if (!gameActive || timeLeft === 0) return; // Freeze inputs if game is over
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-
                 padding: '10px 20px',  
                 fontSize: '22px',  
                 fontWeight: 'bold',  
@@ -138,13 +160,13 @@ if (!gameActive || timeLeft === 0) return; // Freeze inputs if game is over
                 color: timeLeft <= 5 ? '#F0F8FF' : '#191970'
             }}>
                 <img src={alarm} width={21} height={29} alt="Alarm"/> 
-                Time remaining: {timeLeft}s
+                {t("Time remaining")}: {timeLeft}{t("s")}
             </div>
 
             {/* Incoming packets queue */}
             <h3 className='server'>
                 <img src={box} width={45} height={45} alt="Box"/>
-                Server output buffer
+                {t("Server output buffer")}
             </h3>
             <div className='packets'>
                 {incomingPackets.map(packet => (
@@ -162,7 +184,7 @@ if (!gameActive || timeLeft === 0) return; // Freeze inputs if game is over
                         cursor: gameActive ? 'pointer' : 'not-allowed',  
                     }}
                     >
-                        <img src={envelope} width={28} height={18} alt="Box"/> {packet.label}
+                        <img src={envelope} width={28} height={18} alt="Box"/> {t(packet.label)}
                     </button>
                 ))}
             </div>
@@ -170,7 +192,7 @@ if (!gameActive || timeLeft === 0) return; // Freeze inputs if game is over
             {/* Router stream */}
             <h3 className='router'>
                 <img src={shevron} width={30} height={30} alt="Shevron"/> 
-                Your router assembly line
+                {t("Your router assembly line")}
             </h3>
             <div className='router-buffer'>
                 { routerBuffer.map((packet, index) => (
@@ -182,7 +204,7 @@ if (!gameActive || timeLeft === 0) return; // Freeze inputs if game is over
 
             { /* Live browser window */}
             <h3 className='browser'>
-                🖥️ User's web browser
+                🖥️ {t("User's web browser")}
             </h3>
 
             <div className='browser-buffer'>
@@ -195,16 +217,16 @@ if (!gameActive || timeLeft === 0) return; // Freeze inputs if game is over
             ) : timeLeft === 0 ? (
                 <div className='no-time'>
                     <img src={ship} width={31} height={42} alt="Ship"/>
-                    408 Request Time-out. The packets took too long to arrive.
+                    {t("408 Request Time-out. The packets took too long to arrive.")}
                     <img src={ship} width={31} height={42} alt="Ship"/>
                 </div>
             ) : (
                 <div className='load'>
                     {/* <img src={sand} width={30} height={34} alt="Sand"/>  */}
                     { browserMessage ? (
-                    <span style={{ color: '#FF4500', fontWeight: 'bold' }}>{browserMessage}</span>
+                    <span style={{ color: '#FF4500', fontWeight: 'bold' }}>{t(browserMessage)}</span>
                 ) : (
-                    "(Error 404) The page doesn't exist or not found..."
+                    t("(Error 404) The page doesn't exist or not found...")
                 )}
                 </div>
             )}
@@ -212,7 +234,7 @@ if (!gameActive || timeLeft === 0) return; // Freeze inputs if game is over
 
             <button onClick={resetGame} className='reset'>
                 <img src={str} width={30} height={40} alt="str"/>
-                Reboot router
+                {t("Reboot router")}
             </button>
     </div>
   );
