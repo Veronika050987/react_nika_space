@@ -5,7 +5,8 @@
     background-color: #E0FFFF; 
     color: #191970; 
     border-radius: 12px; 
-    max-width: 510px; 
+    max-width: 520px;
+    box-sizing: border-box; 
     margin: 0 auto
 }
 
@@ -37,7 +38,7 @@
     display: flex; 
     gap: 10px; 
     margin-bottom: 20px; 
-    min-height: 50px
+    min-height: 43px
 }
 
 .router
