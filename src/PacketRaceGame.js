@@ -6,7 +6,6 @@ import shevron from './img/shevron.png';
 import box from './img/box.png';
 import envelope from './img/envelope.png';
 import alarm from './img/alarm.png';
-import sand from './img/sand.png';
 import str from './img/str.png';
 import './PacketRaceGame.css';
 
@@ -170,7 +169,7 @@ if (!gameActive || timeLeft === 0) return; // Freeze inputs if game is over
 
             {/* Router stream */}
             <h3 className='router'>
-                <img src={shevron} width={32} height={32} alt="Shevron"/> 
+                <img src={shevron} width={30} height={30} alt="Shevron"/> 
                 Your router assembly line
             </h3>
             <div className='router-buffer'>
