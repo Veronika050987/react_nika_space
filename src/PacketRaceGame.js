@@ -45,7 +45,7 @@ export default function PacketRaceGame()
 
     const [routerBuffer, setRouterBuffer] = useState([]); 
 
-// 2. Timer State (Starts at 15 seconds) 
+// 2. Timer State (Starts at 30 seconds) 
   const [timeLeft, setTimeLeft] = useState(30);
  
   const [gameActive, setGameActive] = useState(true);
@@ -132,7 +132,7 @@ if (!gameActive || timeLeft === 0) return; // Freeze inputs if game is over
  
   return ( 
     <div className='form'>
-            <button onClick={() => setIsRussian(!isRussian)}>
+            <button className='language' onClick={() => setIsRussian(!isRussian)}>
                 {isRussian ? "English" : "Русский"}
             </button>
       

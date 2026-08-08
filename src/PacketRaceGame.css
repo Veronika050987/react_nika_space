@@ -134,3 +134,40 @@
     background-color: #B0E0E6; 
     color: #1a1a2e
 }
+.reset:hover
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px; 
+    width: 100%; 
+    padding: 12px; 
+    font-size: 16px; 
+    font-weight: bold; 
+    cursor: pointer; 
+    border-radius: 8px; 
+    border: none; 
+    background-color: #5F9EA0; 
+    color: #1a1a2e
+}
+.language
+{
+    border: none;
+    border-radius: 5px;
+    background-color: #3CB371;
+    font-size: 14px; 
+    color: #F0F8FF;
+    height: 21px;
+    cursor: pointer;
+}
+.language:hover
+{
+    border: none;
+    border-radius: 5px;
+    background-color: #2E8B57;
+    font-size: 14px; 
+    color: #F0F8FF;
+    height: 21px;
+    cursor: pointer;
+}
