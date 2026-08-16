@@ -31,7 +31,7 @@ const translations = {
 
 export default function PacketRaceGame()
 {
-    const [isRussian, setIsRussian] = useState(false);
+    const [isRussian, setIsRussian] = useState(true);
 
     //1. Packet data
     const [incomingPackets, setIncomingPackets] = useState([

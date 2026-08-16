@@ -5,8 +5,9 @@
     background-color: #E0FFFF; 
     color: #191970; 
     border-radius: 12px; 
-    min-width: 530px;
-    width: 530px;
+    min-width: 0;
+    max-width: 530px;
+    width: 100%;
     box-sizing: border-box; 
     margin: 0 auto
 }
@@ -56,7 +57,8 @@
 .router-buffer
 {
     display: grid; 
-    grid-template-columns: repeat(2, 1fr);
+    /* НА СМАРТФОНАХ ОДНА КОЛОНКА, НА ЭКРАНАХ ПОБОЛЬШЕ — ДВЕ */
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     gap: 10px; 
     min-height: 50px; 
     background-color: #ADD8E6; 
@@ -71,14 +73,15 @@
     padding: 10px; 
     background-color: #87CEEB; 
     border-radius: 5px; 
-    font-weight: bold
+    font-weight: bold;
+    text-align: center; /* Центрируем текст внутри ячеек */
 }
 
 .browser
 {
     display: flex; 
     align-items: center; 
-    justify-content: center
+    justify-content: center;
 }
 
 .browser-buffer
@@ -92,29 +95,29 @@
     background-color: #fff; 
     color: #333; 
     min-height: 80px; 
-    display: ﬂex; 
     align-items: center; 
     justify-content: center; 
-    font-weight: bold
+    font-weight: bold;
+    text-align: center; /* Чтобы длинный текст на мобильных не ломал верстку */
 }
 
 .success
 {
     color: #228B22; 
     font-size: 20px; 
-    text-align: center
+    text-align: center;
 }
 
 .no-time
 {
     color: #ff4a4a; 
-    text-align: center
+    text-align: center;
 }
 
 .load
 {
     color: #777; 
-    text-align: center
+    text-align: center;
 }
 
 .reset
@@ -132,27 +135,17 @@
     border-radius: 8px; 
     border: none; 
     background-color: #B0E0E6; 
-    color: #1a1a2e
+    color: #1a1a2e;
+    transition: background-color 0.2s ease; /* Плавный переход цвета */
 }
 .reset:hover
 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 20px; 
-    width: 100%; 
-    padding: 12px; 
-    font-size: 16px; 
-    font-weight: bold; 
-    cursor: pointer; 
-    border-radius: 8px; 
-    border: none; 
-    background-color: #5F9EA0; 
-    color: #1a1a2e
+    background-color: #5F9EA0;
 }
 .language
 {
+    display: block;
+    margin: 0 auto;
     border: none;
     border-radius: 5px;
     background-color: #3CB371;
@@ -163,11 +156,17 @@
 }
 .language:hover
 {
-    border: none;
-    border-radius: 5px;
     background-color: #2E8B57;
-    font-size: 14px; 
-    color: #F0F8FF;
-    height: 21px;
-    cursor: pointer;
+}
+
+@media (max-width: 480px) {
+    .form {
+        padding: 10px; /* Экономим экранное пространство */
+        border-radius: 8px;
+    }
+    .packets {
+        flex-wrap: wrap; /* Если пакетов много, они перенесутся на новую строку */
+        height: auto;
+        min-height: 60px;
+    }
 }
