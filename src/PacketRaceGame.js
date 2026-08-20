@@ -6,11 +6,15 @@ import box from './img/box.png';
 import envelope from './img/envelope.png';
 import alarm from './img/alarm.png';
 import str from './img/str.png';
+import ship from './img/ship.png';
+import marsik from './img/marsik.png';
+import pizza from './img/pizza.png';
 import './PacketRaceGame.css';
+
 
 const translations = {
      "Aliens love pizza! ": "Инопланетяне любят пиццу! ",
-    "🚀 SPACE NEWS: ": "🚀 КОСМИЧЕСКИЕ НОВОСТИ: ",
+    "Space news:": "Космические новости: ",
     "Packet #2": "Пакет #2",
     "Packet #0": "Пакет #0",
     "Packet #1": "Пакет #1",
@@ -36,9 +40,9 @@ export default function PacketRaceGame()
     //1. Packet data
     const [incomingPackets, setIncomingPackets] = useState([
         { id: 2, code:"Aliens love pizza! ", label: "Packet #2"},
-        { id: 0, code:"🚀 SPACE NEWS: ", label: "Packet #0" },
-        { id: 1, code: "👽", label: "Packet #1" },
-        { id: 3, code: "🍕", label: "Packet #3" }
+        { id: 0, code:"Space news:", src: ship, label: "Packet #0" },
+        { id: 1, code: "", src: marsik, label: "Packet #1" },
+        { id: 3, code: "", src: pizza, label: "Packet #3" }
     ]);
 
     const t = (text) => (isRussian && translations[text] ? translations[text] : text);
@@ -118,9 +122,9 @@ if (!gameActive || timeLeft === 0) return; // Freeze inputs if game is over
   const resetGame = () => { 
     setIncomingPackets([ 
         { id: 2, code:"Aliens love pizza! ", label: "Packet #2"},
-        { id: 0, code:"🚀 SPACE NEWS: ", label: "Packet #0" },
-        { id: 1, code: "👽", label: "Packet #1" },
-        { id: 3, code: "🍕", label: "Packet #3" } 
+        { id: 0, code:"Space news:", src: ship, label: "Packet #0" },
+        { id: 1, code: "", src: marsik, label: "Packet #1" },
+        { id: 3, code: "", src: pizza, label: "Packet #3" }
     ]); 
     setRouterBuffer([]); 
 
@@ -212,7 +216,27 @@ if (!gameActive || timeLeft === 0) return; // Freeze inputs if game is over
             { isWebpageLoaded ? (
                 <div className='success'>
                     🏆 {t("SUCCESS! Webpage loaded!")} <br/>
-                    <span style={{ color: '#228B22' }}>{routerBuffer.map(p => t(p.code)).join(" ")}</span>                    
+                    <span style={{ 
+                        color: '#228B22', 
+                        display: 'inline-flex', 
+                        alignItems: 'center', 
+                        gap: '4px', 
+                        flexWrap: 'wrap',
+                        justifyContent: 'center' 
+                        }}>
+                        {routerBuffer.map((p, idx) => (
+                    <span key={idx} style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                    {p.src && (
+                        <img 
+                            src={p.src} 
+                            alt="Space News Icon" 
+                            style={{ width: '24px', height: '24px', objectFit: 'contain', verticalAlign: 'middle' }} 
+                        />
+                    )}
+                    {t(p.code)}
+                    </span>
+                ))}
+                </span>                   
                 </div>
             ) : timeLeft === 0 ? (
                 <div className='no-time'>
