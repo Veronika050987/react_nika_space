@@ -13,29 +13,84 @@ import './PacketRaceGame.css';
 
 
 const translations = {
-     "Aliens love pizza! ": "Инопланетяне любят пиццу! ",
-    "Space news:": "Космические новости: ",
-    "Packet #2": "Пакет #2",
-    "Packet #0": "Пакет #0",
-    "Packet #1": "Пакет #1",
-    "Packet #3": "Пакет #3",
-    "Digital packet race": "Гонка цифровых пакетов",
-    "Hurry up! Route packets in order before the connection drops!": "Поспеши! Расставь пакеты по порядку до прерывания соединения!",
-    "Time remaining": "Осталось времени",
-    "s": "с",
-    "Server output buffer": "Выходной буфер сервера",
-    "Your router assembly line": "Сборочная линия роутера",
-    "User's web browser": "Веб браузер пользователя",
-    "408 Request Time-out. The packets took too long to arrive.": "408 Истекло время ожидания запроса пакетов",
-    "Error 400: Bad Request (Invalid packet order)": "Ошибка 400: неверный запрос (Нарушен порядок пакетов)",
-    "(Error 404) The page doesn't exist or not found...": "(Ошибка 404) Страница не существует или не найдена...",
-    "Reboot router": "Перезагрузить роутер",
-    "SUCCESS! Webpage loaded!": "УСПЕХ! Веб страница загружена!" 
+     "Aliens love pizza! ": {
+        "ru" : "Инопланетяне любят пиццу! ",
+        "fr" : "Les extraterrestres adorent la pizza ! "
+    },
+    "Space news:": {
+        "ru" : "Космические новости: ",
+        "fr" : "Les nouvelles de l'espace"
+    },
+    "Packet #2": {
+        "ru" : "Пакет #2",
+        "fr" : "Paquet #2"
+    },
+    "Packet #0": {
+        "ru" : "Пакет #0",
+        "fr" : "Paquet #0"
+    },
+    "Packet #1": {
+        "ru" : "Пакет #1",
+        "fr" : "Paquet #1"
+    },
+    "Packet #3": {
+        "ru" : "Пакет #3",
+        "fr" : "Paquet #3"
+    },
+    "Digital packet race": {
+        "ru" : "Гонка цифровых пакетов",
+        "fr" : "Course des paquets numériques"
+    },
+    "Hurry up! Route packets in order before the connection drops!": {
+        "ru" : "Поспеши! Расставь пакеты по порядку до прерывания соединения!",
+        "fr" : "Dépêche-toi, mets en ordre les paquets avant la déconnection!"
+    },
+    "Time remaining": {
+        "ru" : "Осталось времени",
+        "fr" : "Temp restant"
+    },
+    "s": {
+        "ru" : "с",
+        "fr" : "sec"
+    
+    },
+    "Server output buffer": {
+        "ru" : "Выходной буфер сервера",
+        "fr" : "Buffer de sortie du serveur"
+    },
+    "Your router assembly line": {
+        "ru" : "Сборочная линия роутера",
+        "fr" : "Ligne de montage du serveur"
+    },
+    "User's web browser": {
+        "ru" : "Веб браузер пользователя",
+        "fr" : "Web navigateur du l'utilisateur"
+    },
+    "408 Request Time-out. The packets took too long to arrive.": {
+        "ru" : "408 Истекло время ожидания запроса пакетов",
+        "fr" : "408 Request Time-out. Les paquets ont pris trop de temps à arriver."
+    },
+    "Error 400: Bad Request (Invalid packet order)": {
+        "ru" : "Ошибка 400: неверный запрос (Нарушен порядок пакетов)",
+        "fr" : "Erreur 400: Bad Request (Ordre des paquets invalide)"
+    },
+    "(Error 404) The page doesn't exist or not found...": {
+        "ru" : "(Ошибка 404) Страница не существует или не найдена...",
+        "fr" : "(Error 404) La page n'existe pas ou n'est pas trouvée..."
+    },
+    "Reboot router": {
+        "ru" : "Перезагрузить роутер",
+        "fr" : "Redémarrer le routeur"
+    },
+    "SUCCESS! Webpage loaded!": {
+        "ru" : "УСПЕХ! Веб страница загружена!",
+        "fr" : "SUCCÈS ! Page web chargée !"
+    } 
 };
 
 export default function PacketRaceGame()
 {
-    const [isRussian, setIsRussian] = useState(true);
+    const [language, setLanguage] = useState('ru');
 
     //1. Packet data
     const [incomingPackets, setIncomingPackets] = useState([
@@ -45,7 +100,10 @@ export default function PacketRaceGame()
         { id: 3, code: "", src: pizza, label: "Packet #3" }
     ]);
 
-    const t = (text) => (isRussian && translations[text] ? translations[text] : text);
+    const t = (text) => {
+        if (language === 'en') return text; // Для английского возвращаем сам ключ
+        return translations[text]?.[language] || text; // Для остальных берем значение из словаря
+    };
 
     const [routerBuffer, setRouterBuffer] = useState([]); 
 
@@ -108,7 +166,7 @@ if (!gameActive || timeLeft === 0) return; // Freeze inputs if game is over
     const expectedId = routerBuffer.length; 
 
     if (packet.id !== expectedId) {
-        setBrowserMessage(t("Error 400: Bad Request (Invalid packet order)"));
+        setBrowserMessage("Error 400: Bad Request (Invalid packet order)");
         return; // Прерываем выполнение, пакет не добавляется
     }
 
@@ -127,17 +185,29 @@ if (!gameActive || timeLeft === 0) return; // Freeze inputs if game is over
         { id: 3, code: "", src: pizza, label: "Packet #3" }
     ]); 
     setRouterBuffer([]); 
-
     setBrowserMessage(""); 
-    
     setTimeLeft(30);
     setGameActive(true);
  }; 
+
+ // Функция для циклического переключения языков ru -> en -> fr -> ru
+    const toggleLanguage = () => {
+        if (language === 'ru') setLanguage('en');
+        else if (language === 'en') setLanguage('fr');
+        else setLanguage('ru');
+    };
+ 
+    // Текст для отображения текущего выбранного языка на кнопке
+    const getLanguageButtonLabel = () => {
+        if (language === 'ru') return "Русский";
+        if (language === 'en') return "English";
+        return "Français";
+    };
  
   return ( 
     <div className='form'>
-            <button className='language' onClick={() => setIsRussian(!isRussian)}>
-                {isRussian ? "English" : "Русский"}
+            <button className='language' onClick={toggleLanguage}>
+                {getLanguageButtonLabel()}
             </button>
       
             <h2 className='aliens'>
